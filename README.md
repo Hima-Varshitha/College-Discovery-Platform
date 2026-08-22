@@ -4,7 +4,7 @@ A modern engineering college discovery platform that helps students explore coll
 
 ## 🚀 Live Demo
 
-(Add Vercel URL here)
+https://college-discovery-platform-5vjdqpfpf-hima-varshitha1.vercel.app/compare
 
 ## Features
 
