@@ -1,10 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { colleges } from "@/data/colleges";
 
 
 export default function ComparePage() {
 
-  const selectedColleges = colleges.slice(0,3);
+  const [selectedIds, setSelectedIds] = useState<number[]>([1, 2]);
+  const selectedColleges = colleges.filter((college) =>
+    selectedIds.includes(college.id)
+  );
 
 
   return (
@@ -20,6 +26,62 @@ export default function ComparePage() {
         <h1 className="text-4xl font-bold text-gray-900">
           Compare Colleges
         </h1>
+
+        <div className="mt-8 rounded-xl bg-white p-6 shadow">
+
+  <h2 className="text-xl font-bold">
+    Select Colleges
+  </h2>
+
+
+  <div className="mt-4 flex flex-wrap gap-4">
+
+    {colleges.map((college) => (
+
+      <label
+        key={college.id}
+        className="flex items-center gap-2"
+      >
+
+        <input
+          type="checkbox"
+          checked={selectedIds.includes(college.id)}
+          disabled={
+            !selectedIds.includes(college.id) &&
+            selectedIds.length >= 3
+          }
+          onChange={() => {
+
+            if (selectedIds.includes(college.id)) {
+
+              setSelectedIds(
+                selectedIds.filter(
+                  (id) => id !== college.id
+                )
+              );
+
+            } else {
+
+              setSelectedIds([
+                ...selectedIds,
+                college.id
+              ]);
+
+            }
+
+          }}
+        />
+
+
+        {college.name}
+
+      </label>
+
+    ))}
+
+  </div>
+
+</div>
 
 
         <p className="mt-3 text-gray-600">
@@ -160,6 +222,91 @@ export default function ComparePage() {
 
               </tr>
 
+            <tr className="border">
+
+              <td className="p-4 font-semibold">
+                Established Year
+              </td>
+              {
+                selectedColleges.map((college)=>( 
+                  <td
+                    key={college.id}
+                    className="p-4"
+                  >
+                    {college.establishedYear}
+                  </td>
+                ))
+              }
+            </tr>
+
+            <tr className="border">
+              <td className="p-4 font-semibold">
+                College Type
+              </td>
+              {
+                selectedColleges.map((college)=>(
+                  <td
+                    key={college.id}
+                    className="p-4"
+                  >
+                    {college.type}
+                  </td>
+                ))
+              }
+            </tr>
+
+            <tr className="border">
+              <td className="p-4 font-semibold">
+                Entrance Exam
+              </td>
+              {
+                selectedColleges.map((college)=>(  
+                  <td
+                    key={college.id}
+                    className="p-4"
+                  >
+                    {college.entranceExam}
+                  </td>
+                ))
+              }
+            </tr>
+
+            <tr className="border">
+              <td className="p-4 font-semibold">
+                Highest Package
+              </td>
+              {
+                selectedColleges.map((college)=>(              
+                  <td
+                    key={college.id}
+                    className="p-4"
+                  >
+                    {college.placement.highestPackage}
+                  </td>
+                ))
+              }
+            </tr>
+
+            <tr className="border">
+              <td className="p-4 font-semibold">
+                CSE Cutoff
+              </td>
+              {
+                selectedColleges.map((college)=>(
+                  <td
+                    key={college.id}
+                    className="p-4"
+                  >
+                    {"closingRank" in college.cutoff
+                      ? `Rank ${college.cutoff.closingRank}`
+                      : `Score ${college.cutoff.cutoffScore}`
+                    }
+                  </td>
+                ))
+              }
+            </tr>
+
+            
 
             </tbody>
 

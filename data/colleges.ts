@@ -1,4 +1,46 @@
-export const colleges = [
+type RankCutoff = {
+  year: number;
+  exam: string;
+  branch: string;
+  category: string;
+  gender: string;
+  quota: string;
+  round: number;
+  openingRank: number;
+  closingRank: number;
+};
+
+type ScoreCutoff = {
+  year: number;
+  exam: string;
+  branch: string;
+  campus: string;
+  cutoffScore: number;
+  maximumScore: number;
+};
+
+export type College = {
+  id: number;
+  name: string;
+  keywords: string[];
+  location: string;
+  state: string;
+  type: string;
+  establishedYear: number;
+  rating: number;
+  fees: string;
+  entranceExam: string;
+  cutoff: RankCutoff | ScoreCutoff;
+  courses: string[];
+  placement: {
+    averagePackage: string;
+    highestPackage: string;
+  };
+  description: string;
+  reviews: string[];
+};
+
+export const colleges: College[] = [
   {
     id: 1,
     name: "Indian Institute of Technology Bombay",
@@ -17,6 +59,18 @@ export const colleges = [
     fees: "Approximately ₹10-12 Lakhs (4 years)",
 
     entranceExam: "JEE Advanced",
+
+    cutoff: {
+      year: 2026,
+      exam: "JEE Advanced",
+      branch: "Computer Science and Engineering",
+      category: "OPEN",
+      gender: "Gender-Neutral",
+      quota: "All India",
+      round: 5,
+      openingRank: 1,
+      closingRank: 67,
+    },
 
     courses: [
       "Computer Science Engineering",
@@ -58,6 +112,18 @@ export const colleges = [
 
     entranceExam: "JEE Advanced",
 
+    cutoff: {
+      year: 2026,
+      exam: "JEE Advanced",
+      branch: "Computer Science and Engineering",
+      category: "OPEN",
+      gender: "Gender-Neutral",
+      quota: "All India",
+      round: 5,
+      openingRank: 35,
+      closingRank: 128,
+    },
+
     courses: [
       "Computer Science Engineering",
       "Electronics Engineering",
@@ -97,6 +163,18 @@ export const colleges = [
     fees: "Approximately ₹10-12 Lakhs (4 years)",
 
     entranceExam: "JEE Advanced",
+
+    cutoff: {
+      year: 2026,
+      exam: "JEE Advanced",
+      branch: "Computer Science and Engineering",
+      category: "OPEN",
+      gender: "Gender-Neutral",
+      quota: "All India",
+      round: 6,
+      openingRank: 79,
+      closingRank: 171,
+    },
 
     courses: [
       "Computer Science Engineering",
@@ -138,6 +216,18 @@ export const colleges = [
 
     entranceExam: "JEE Main",
 
+    cutoff: {
+      year: 2026,
+      exam: "JEE Main",
+      branch: "Computer Science and Engineering",
+      category: "OPEN",
+      gender: "Gender-Neutral",
+      quota: "Other State",
+      round: 5,
+      openingRank: 1998,
+      closingRank: 2581,
+    },
+
     courses: [
       "Computer Science Engineering",
       "Electronics and Communication Engineering",
@@ -177,6 +267,15 @@ export const colleges = [
     fees: "Approximately ₹20-25 Lakhs (4 years)",
 
     entranceExam: "BITSAT",
+
+    cutoff: {
+      year: 2025,
+      exam: "BITSAT",
+      branch: "B.E. Computer Science",
+      campus: "Pilani",
+      cutoffScore: 304,
+      maximumScore: 390,
+    },
 
     courses: [
       "Computer Science Engineering",
